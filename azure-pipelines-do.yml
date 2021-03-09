@@ -1,0 +1,27 @@
+
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+variables:
+  - template: .azure-pipelines/variables.yml
+
+name: ${{variables.name}}-pipeline
+
+stages:
+  - stage: run
+    displayName: Run
+    jobs:
+    - job: run
+      displayName: Setup and Run
+      pool:
+        vmImage: ${{variables.vmImage}}
+      steps:
+      - script: |
+          ./do.sh info
+        displayName: 'Info'
+      - script: |
+          ./do.sh setup
+        displayName: 'Setup'
+      # - script: |
+      #     ./do.sh headless-nuke
+      #   displayName: 'Run'
