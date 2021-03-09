@@ -7,8 +7,13 @@ export AWS_NUKE_VERSION=2.15.0.rc.3
 export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$ARCH
 export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.3/$AWS_NUKE_FILE.tar.gz
 export AWS_NUKE_EXE=aws-nuke
-export AWS_NUKE_CONFIG=config/nuke-config-limited.yml
+export AWS_NUKE_CONFIG=config/nuke-config-test.yml
 export TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z)
+
+if [ ! "${1:-}" ]; then 
+  echo "Specify a subcommand."
+  exit 1
+fi
 
 case $1 in
   info)
