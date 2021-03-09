@@ -22,6 +22,12 @@ stages:
       - script: |
           ./do.sh setup
         displayName: 'Setup'
-      # - script: |
-      #     ./do.sh headless-nuke
-      #   displayName: 'Run'
+      - task: AWSShellScript@1
+        displayName: 'Run'
+        awsCredentials: 'sje-aws-dev'
+        regionName: 'eu-west-1'
+        scriptType: 'inline'
+        inlineScript: './do.sh headless-dryrun'
+        failOnStandardError: true
+      - publish: log
+        artifact: ${{variables.name}}-$(system.JobId)-logs 
