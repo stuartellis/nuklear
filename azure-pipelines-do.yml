@@ -25,7 +25,7 @@ stages:
       - task: AWSShellScript@1
         displayName: 'Run'
         inputs:
-          awsCredentials: 'sje-aws-prod'
+          awsCredentials: 'sje-aws-labs'
           regionName: 'eu-west-1'
           scriptType: 'inline'
           inlineScript: './do.sh headless-dryrun'
