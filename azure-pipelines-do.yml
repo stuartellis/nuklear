@@ -17,11 +17,11 @@ stages:
         vmImage: ${{variables.vmImage}}
       steps:
       - script: |
-          ./do.sh info
-        displayName: 'Info'
-      - script: |
           ./do.sh setup
         displayName: 'Setup'
+      - script: |
+          ./do.sh info
+        displayName: 'Info'
       - task: AWSShellScript@1
         displayName: 'Run'
         inputs:
