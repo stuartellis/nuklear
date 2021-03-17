@@ -25,7 +25,7 @@ stages:
           awsCredentials: 'sje-aws-labs'
           regionName: 'eu-west-1'
           scriptType: 'inline'
-          inlineScript: ./do.sh info
+          inlineScript: ./do.sh headless-dryrun
           failOnStandardError: true
       - publish: log
         artifact: ${{variables.name}}-$(system.JobId)-logs 
