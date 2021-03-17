@@ -17,7 +17,7 @@ stages:
           ./do.sh setup
         displayName: 'Setup'
       - script: |
-          ./do.sh info > log/info.txt
+          ./do.sh info > log/app-info.txt
         displayName: 'Info'
       - task: AWSShellScript@1
         displayName: 'Run'
@@ -25,7 +25,7 @@ stages:
           awsCredentials: 'sje-aws-labs'
           regionName: 'eu-west-1'
           scriptType: 'inline'
-          inlineScript: ./do.sh dryrun
+          inlineScript: ./do.sh headless-dryrun
           failOnStandardError: true
       - publish: log
         artifact: ${{variables.name}}-$(system.JobId)-logs 
