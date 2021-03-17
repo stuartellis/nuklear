@@ -13,10 +13,10 @@ stages:
       pool:
         vmImage: ${{variables.vmImage}}
       steps:
-    - task: Cache@2
-      inputs:
-        key: aws-nuke | "$(Agent.OS)" | do.sh
-        path: bin
+      - task: Cache@2
+        inputs:
+          key: aws-nuke | "$(Agent.OS)" | do.sh
+          path: bin
       - script: |
           ./do.sh setup
         displayName: 'Setup'
