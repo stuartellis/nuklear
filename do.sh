@@ -17,7 +17,7 @@ fi
 
 case $1 in
   info)
-    [ -d "log" ] && echo "Log directory exists"
+    [ ! -d "log" ] && echo "Log directory not exist"
     ./$AWS_NUKE_EXE version
   ;;
   clean)
