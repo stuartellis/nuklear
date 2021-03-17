@@ -31,7 +31,6 @@ case $1 in
     ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --no-dry-run
   ;;
   headless-dryrun)
-    [ -d "log" ] && echo "Log directory exists"
     ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --force > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
   ;;
   headless-nuke)
