@@ -2,12 +2,12 @@
 
 set -euo pipefail
 
-export ARCH=linux-amd64
+export ARCH=darwin-amd64
 export AWS_NUKE_VERSION=2.15.0.rc.3
 export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$ARCH
 export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.3/$AWS_NUKE_FILE.tar.gz
 export AWS_NUKE_EXE=aws-nuke
-export AWS_NUKE_CONFIG=config/nuke-config-test.yml
+export AWS_NUKE_CONFIG=config/nuke-config-prd.yml
 export TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z)
 
 if [ ! "${1:-}" ]; then 
@@ -40,7 +40,7 @@ case $1 in
     tar xvzf $AWS_NUKE_FILE.tar.gz
     mv $AWS_NUKE_FILE $AWS_NUKE_EXE 
     chmod +x $AWS_NUKE_EXE
-    [ -d "log" ] || mkdir log
+    [ -d "log" ] && mkdir log
     rm $AWS_NUKE_FILE.tar.gz
   ;;
   *)
