@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-export ARCH=darwin-amd64
+export ARCH=linux-amd64
 export AWS_NUKE_VERSION=2.15.0.rc.3
 export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$ARCH
 export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.3/$AWS_NUKE_FILE.tar.gz
