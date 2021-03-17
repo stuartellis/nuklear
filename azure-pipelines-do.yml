@@ -17,7 +17,7 @@ stages:
           ./do.sh setup
         displayName: 'Setup'
       - script: |
-          ./do.sh info > log/app-info.txt
+          ./do.sh info > log/aws-nuke-info.txt
         displayName: 'Info'
       - task: AWSShellScript@1
         displayName: 'Run'
