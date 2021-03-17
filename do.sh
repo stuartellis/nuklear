@@ -17,6 +17,7 @@ fi
 
 case $1 in
   info)
+    [ -d "log" ] && echo "Log directory exists"
     ./$AWS_NUKE_EXE version
   ;;
   clean)
@@ -30,17 +31,18 @@ case $1 in
     ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --no-dry-run
   ;;
   headless-dryrun)
-    ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --force > log/aws-nuke-"$TIMESTAMP".log 2>&1
+    [ -d "log" ] && echo "Log directory exists"
+    ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --force > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
   ;;
   headless-nuke)
-    ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --force --no-dry-run > log/aws-nuke-"$TIMESTAMP".log 2>&1
+    ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --force --no-dry-run > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
   ;;
   setup)
     curl -L $AWS_NUKE_URL > $AWS_NUKE_FILE.tar.gz 
     tar xvzf $AWS_NUKE_FILE.tar.gz
     mv $AWS_NUKE_FILE $AWS_NUKE_EXE 
     chmod +x $AWS_NUKE_EXE
-    [ -d "log" ] && mkdir log
+    [ -d "log" ] || mkdir log
     rm $AWS_NUKE_FILE.tar.gz
   ;;
   *)
