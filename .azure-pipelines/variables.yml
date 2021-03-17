@@ -2,3 +2,4 @@ variables:
   name: nuklear
   vmImage: 'ubuntu-20.04'
   awsNukeConfig: nuke-config-labs.yml
+  awsNukeVersion: 2.15.0.rc.3

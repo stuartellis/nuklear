@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-export ARCH=linux-amd64
+export ARCH=darwin-amd64
 export AWS_NUKE_VERSION=2.15.0.rc.3
 export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$ARCH
 export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.3/$AWS_NUKE_FILE.tar.gz
@@ -50,12 +50,14 @@ case $1 in
   ;;
   setup)
     [ -d "bin" ] || mkdir bin
-    curl -L $AWS_NUKE_URL > $AWS_NUKE_FILE.tar.gz 
-    tar xvzf $AWS_NUKE_FILE.tar.gz
-    mv $AWS_NUKE_FILE $AWS_NUKE_EXE 
-    chmod +x $AWS_NUKE_EXE
+    if [ ! -x "$AWS_NUKE_EXE" ]; then 
+      curl -L $AWS_NUKE_URL > $AWS_NUKE_FILE.tar.gz 
+      tar xvzf $AWS_NUKE_FILE.tar.gz
+      mv $AWS_NUKE_FILE $AWS_NUKE_EXE 
+      chmod +x $AWS_NUKE_EXE
+      rm $AWS_NUKE_FILE.tar.gz
+    fi
     [ -d "log" ] || mkdir log
-    rm $AWS_NUKE_FILE.tar.gz
   ;;
   *)
     echo "$1 is not a valid command"
