@@ -17,7 +17,7 @@ fi
 
 case $1 in
   info)
-    [ ! -d "log" ] && echo "Log directory not exist"
+    [ -d "log" ] && echo "Log directory exists"
     ./$AWS_NUKE_EXE version
   ;;
   clean)
@@ -25,7 +25,8 @@ case $1 in
    [ -d "log" ] && rm -r log 
   ;;
   dryrun)
-    ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG
+    aws sts get-caller-identity
+    # ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG
   ;;
   nuke)
     ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --no-dry-run
