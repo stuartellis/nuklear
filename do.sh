@@ -2,27 +2,43 @@
 
 set -euo pipefail
 
-export ARCH=linux-amd64
-export AWS_NUKE_VERSION=2.15.0.rc.3
-export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$ARCH
-export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.3/$AWS_NUKE_FILE.tar.gz
 export AWS_NUKE_EXE=./bin/aws-nuke
 export AWS_NUKE_WAIT_SECONDS=1
 export AWS_NUKE_MAX_RETRIES=10
+
 export TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z)
+
+function specify_version () {
+  OS_ID="$(uname -a)"
+  MACOS_ALIAS=Darwin
+  if test "${OS_ID#MACOS_ALIAS}" != "$OS_ID"; then
+    export OS=darwin
+  else
+    export OS=linux
+  fi
+  
+  # On GitHub, the version numbers in URL and filename are NOT consistent
+  export AWS_NUKE_VERSION=2.15.0.rc.3
+  export ARCH=amd64
+  export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$OS-$ARCH
+  export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.3/$AWS_NUKE_FILE.tar.gz
+}
+
+function require_config () {
+  if [ ! "${AWS_NUKE_CONFIG:-}" ]; then 
+    echo "Specify a configuration file."
+    exit 1
+  fi
+}
 
 if [ ! "${1:-}" ]; then 
   echo "Specify a subcommand."
   exit 1
 fi
 
-function require_config  () {
-  if [ ! "${2:-}" ]; then 
-    echo "Specify a configuration file."
-    exit 1
-  fi
+if [ "${2:-}" ]; then 
   export AWS_NUKE_CONFIG=config/$2
-}
+fi
 
 case $1 in
   info)
@@ -49,6 +65,7 @@ case $1 in
     ./$AWS_NUKE_EXE --config $AWS_NUKE_CONFIG --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES --no-dry-run > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
   ;;
   setup)
+    specify_version
     [ -d "bin" ] || mkdir bin
     if [ ! -x "$AWS_NUKE_EXE" ]; then 
       curl -L $AWS_NUKE_URL > $AWS_NUKE_FILE.tar.gz 
