@@ -3,7 +3,7 @@
 set -euo pipefail
 
 export AWS_NUKE_EXE=./bin/aws-nuke
-export AWS_NUKE_WAIT_SECONDS=1
+export AWS_NUKE_WAIT_SECONDS=3 # aws-nuke minimum is 3 seconds
 export AWS_NUKE_MAX_RETRIES=10
 
 export TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z)
