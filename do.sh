@@ -37,7 +37,7 @@ if [ ! "${1:-}" ]; then
 fi
 
 if [ "${2:-}" ]; then 
-  export AWS_NUKE_CONFIG=config/$2
+  export AWS_NUKE_CONFIG=config/$2.yml
 fi
 
 case $1 in

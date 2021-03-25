@@ -31,4 +31,4 @@ stages:
           scriptType: 'inline'
           inlineScript: ./do.sh headless-dryrun ${{variables.awsNukeConfig}}
       - publish: log
-        artifact: ${{variables.name}}-$(system.JobId)-logs 
+        artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
