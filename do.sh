@@ -9,14 +9,14 @@ export AWS_NUKE_MAX_RETRIES=10
 export TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z)
 
 function specify_version () {
-  OS_ID="$(uname -a)"
-  MACOS_ALIAS=Darwin
-  if [[ $OS_ID == *"$MACOS_ALIAS"* ]]; then
-    export OS=darwin
-  else
-    export OS=linux
-  fi
-  
+  # OS_ID="$(uname -a)"
+  # MACOS_ALIAS=Darwin
+  # if [[ $OS_ID == *"$MACOS_ALIAS"* ]]; then
+  #   export OS=darwin
+  # else
+  #   export OS=linux
+  # fi
+  export OS=linux
   # On GitHub, the version numbers in URL and filename are NOT consistent
   export AWS_NUKE_VERSION=2.15.0.rc.4
   export ARCH=amd64
