@@ -1,4 +1,5 @@
 variables:
   name: nuklear
   vmImage: 'ubuntu-20.04'
-  awsNukeConfig: nuke-config-labs
+  awsNukeConfig: labs
+  awsNukeMode: dryrun

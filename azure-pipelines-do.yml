@@ -29,6 +29,6 @@ stages:
           awsCredentials: 'sje-aws-labs'
           regionName: 'eu-west-1'
           scriptType: 'inline'
-          inlineScript: ./do.sh headless-dryrun ${{variables.awsNukeConfig}}
+          inlineScript: ./do.sh headless:${{variables.awsNukeMode}} ${{variables.awsNukeConfig}}
       - publish: log
         artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
