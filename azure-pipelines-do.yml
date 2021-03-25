@@ -30,6 +30,5 @@ stages:
           regionName: 'eu-west-1'
           scriptType: 'inline'
           inlineScript: ./do.sh headless-dryrun ${{variables.awsNukeConfig}}
-          failOnStandardError: true
       - publish: log
         artifact: ${{variables.name}}-$(system.JobId)-logs 
