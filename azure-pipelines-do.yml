@@ -55,4 +55,3 @@ stages:
           sourceFolder: 'log'
           globExpressions: '**'
           targetFolder: ${{variables.name}}/${{variables.awsNukeConfig}}/$(timestamp)
-          keyManagement: 'awsManaged'
