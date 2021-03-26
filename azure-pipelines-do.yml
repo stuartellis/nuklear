@@ -42,7 +42,7 @@ stages:
           scriptType: 'inline'
           inlineScript: ./do.sh headless:${{variables.awsNukeMode}} ${{variables.awsNukeConfig}} $(timestamp)
       - publish: log
-        artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(timestamp)-logs 
+        artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
         condition: always()
       - task: S3Upload@1
         condition: false
