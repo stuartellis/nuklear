@@ -17,10 +17,10 @@ stages:
         inputs:
           key: aws-nuke | "$(Agent.OS)" | do.sh
           path: bin
-      - script: |
+      - bash: |
           ./do.sh setup
         displayName: 'Setup'
-      - script: |
+      - bash: |
           ./do.sh info > log/aws-nuke-info.txt
         displayName: 'Info'
       - bash: |
@@ -33,9 +33,9 @@ stages:
           awsCredentials: 'sje-aws-labs'
           regionName: 'eu-west-1'
           scriptType: 'inline'
-          inlineScript: ./do.sh headless:${{variables.awsNukeMode}} ${{variables.awsNukeConfig}}
+          inlineScript: ./do.sh headless:${{variables.awsNukeMode}} ${{variables.awsNukeConfig}} $(timestamp)
       - publish: log
-        artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
+        artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(timestamp)-logs 
         condition: always()
       - task: S3Upload@1
         condition: false
