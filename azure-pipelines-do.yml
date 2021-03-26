@@ -47,11 +47,12 @@ stages:
         artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
         condition: always()
       - task: S3Upload@1
+        condition: always()
         inputs:
           awsCredentials: 'sje-aws-origin'
           regionName: 'eu-west-1'
           bucketName: ${{variables.logsS3Bucket}}
-          sourceFolder: 'logs'
+          sourceFolder: 'log'
           globExpressions: '**'
           targetFolder: ${{variables.name}}/${{variables.awsNukeConfig}}/$(timestamp)
           keyManagement: 'awsManaged'
