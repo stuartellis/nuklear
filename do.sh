@@ -63,23 +63,23 @@ case $1 in
    [ -d "bin" ] && rm -r bin 
    [ -d "log" ] && rm -r log 
   ;;
-  interactive:dryrun)
+  dryrun)
     require_config
     ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG"
   ;;
-  interactive:nuke)
+  nuke)
     require_config
     ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --no-dry-run
   ;;
   headless:dryrun)
     require_config
     set_timestamp
-    ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
+    ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES > log/aws-nuke-"$TIMESTAMP"-full.log
   ;;
   headless:nuke)
     require_config
     set_timestamp
-    ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES --no-dry-run > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
+    ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES --no-dry-run > log/aws-nuke-"$TIMESTAMP"-full.log
   ;;
   setup)
     specify_version
