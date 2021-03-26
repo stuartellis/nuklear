@@ -62,6 +62,7 @@ case $1 in
   clean)
    [ -d "bin" ] && rm -r bin 
    [ -d "log" ] && rm -r log 
+   [ -d "tmp" ] && rm -r tmp
   ;;
   dryrun)
     require_config
@@ -85,12 +86,13 @@ case $1 in
   setup)
     specify_version
     [ -d "bin" ] || mkdir bin
+    [ -d "tmp" ] || mkdir tmp
     if [ ! -x "$AWS_NUKE_EXE" ]; then 
-      curl -L $AWS_NUKE_URL > $AWS_NUKE_FILE.tar.gz 
-      tar xvzf $AWS_NUKE_FILE.tar.gz
-      mv $AWS_NUKE_FILE $AWS_NUKE_EXE 
+      curl -L $AWS_NUKE_URL > ./tmp/$AWS_NUKE_FILE.tar.gz 
+      tar xvzf ./tmp/$AWS_NUKE_FILE.tar.gz -C ./tmp
+      mv ./tmp/$AWS_NUKE_FILE $AWS_NUKE_EXE 
       chmod +x $AWS_NUKE_EXE
-      rm $AWS_NUKE_FILE.tar.gz
+      rm -r ./tmp
     fi
     [ -d "log" ] || mkdir log
   ;;
