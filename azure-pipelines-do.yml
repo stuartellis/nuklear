@@ -33,6 +33,7 @@ stages:
         displayName: 'Info'
       - bash: |
           CURRENT_TIMESTAMP=$(./do.sh timestamp)
+          echo "Timestamp: $CURRENT_TIMESTAMP"
           echo "##vso[task.setvariable variable=timestamp;]$CURRENT_TIMESTAMP"
         displayName: 'Set Timestamp'
       - task: AWSShellScript@1
