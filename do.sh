@@ -48,7 +48,7 @@ if [ ! "${1:-}" ]; then
 fi
 
 if [ "${2:-}" ]; then 
-  export AWS_NUKE_CONFIG=./config/aws-nuke/$2.yml
+  export AWS_NUKE_CONFIG=./config/aws-nuke/"$2".yml
 fi
 
 if [ "${3:-}" ]; then 
