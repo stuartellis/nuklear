@@ -4,6 +4,13 @@ variables:
 
 name: ${{variables.name}}-pipeline
 
+ cron: "0 8 * * 5"
+  displayName: Weekly run on Friday
+  branches:
+    include:
+    - main
+  always: true
+
 stages:
   - stage: run
     displayName: Run
