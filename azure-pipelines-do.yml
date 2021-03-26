@@ -51,7 +51,7 @@ stages:
         inputs:
           awsCredentials: 'sje-aws-origin'
           regionName: 'eu-west-1'
-          bucketName: 'BUCKET'
+          bucketName: ${{variables.logsS3Bucket}}
           sourceFolder: 'logs'
           globExpressions: '**'
           targetFolder: ${{variables.name}}/${{variables.awsNukeConfig}}/$(timestamp)

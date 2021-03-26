@@ -3,3 +3,4 @@ variables:
   vmImage: 'ubuntu-20.04'
   awsNukeConfig: labs
   awsNukeMode: dryrun
+  logsS3Bucket: stuartellis-origin-ops-logs-eu-west-1
