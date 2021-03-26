@@ -23,6 +23,10 @@ stages:
       - script: |
           ./do.sh info > log/aws-nuke-info.txt
         displayName: 'Info'
+      - bash: |
+          CURRENT_TIMESTAMP=$(./do.sh timestamp)
+          echo "##vso[task.setvariable variable=timestamp;]$CURRENT_TIMESTAMP"
+        displayName: 'Set Timestamp'
       - task: AWSShellScript@1
         displayName: 'Run'
         inputs:
@@ -32,3 +36,14 @@ stages:
           inlineScript: ./do.sh headless:${{variables.awsNukeMode}} ${{variables.awsNukeConfig}}
       - publish: log
         artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
+        condition: always()
+      - task: S3Upload@1
+        condition: false
+        inputs:
+          awsCredentials: 'sje-aws-origin'
+          regionName: 'eu-west-1'
+          bucketName: 'BUCKET'
+          sourceFolder: 'logs'
+          globExpressions: '**'
+          targetFolder: ${{variables.name}}/${{variables.awsNukeConfig}}/$(timestamp)
+          keyManagement: 'awsManaged'

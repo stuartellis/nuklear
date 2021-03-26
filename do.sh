@@ -2,11 +2,13 @@
 
 set -euo pipefail
 
+### Configuration
+
 export AWS_NUKE_EXE=./bin/aws-nuke
 export AWS_NUKE_WAIT_SECONDS=3 # aws-nuke minimum is 3 seconds
 export AWS_NUKE_MAX_RETRIES=10
 
-export TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z)
+### Functions
 
 function specify_version () {
   OS_ID="$(uname -a)"
@@ -31,6 +33,15 @@ function require_config () {
   fi
 }
 
+function set_timestamp () {
+  if [ ! "${TIMESTAMP:-}" ]; then
+    TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z) 
+    export TIMESTAMP
+  fi
+}
+
+### Main
+
 if [ ! "${1:-}" ]; then 
   echo "Specify a subcommand."
   exit 1
@@ -38,6 +49,10 @@ fi
 
 if [ "${2:-}" ]; then 
   export AWS_NUKE_CONFIG=config/aws-nuke/$2.yml
+fi
+
+if [ "${3:-}" ]; then 
+  export TIMESTAMP=$3
 fi
 
 case $1 in
@@ -58,10 +73,12 @@ case $1 in
   ;;
   headless:dryrun)
     require_config
+    set_timestamp
     ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
   ;;
   headless:nuke)
     require_config
+    set_timestamp
     ./$AWS_NUKE_EXE --config "$AWS_NUKE_CONFIG" --force --force-sleep $AWS_NUKE_WAIT_SECONDS --max-wait-retries $AWS_NUKE_MAX_RETRIES --no-dry-run > log/aws-nuke-"$TIMESTAMP"-full.log 2>&1
   ;;
   setup)
@@ -75,6 +92,10 @@ case $1 in
       rm $AWS_NUKE_FILE.tar.gz
     fi
     [ -d "log" ] || mkdir log
+  ;;
+  timestamp)
+    set_timestamp
+    echo "$TIMESTAMP"
   ;;
   *)
     echo "$1 is not a valid command"
