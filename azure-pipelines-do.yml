@@ -5,7 +5,7 @@ variables:
 name: ${{variables.name}}-pipeline
 
 schedules:
-  - cron: "0 8 * * 5"
+  - cron: "30 8 * * 5"
     displayName: Weekly run on Friday
     branches:
       include:
