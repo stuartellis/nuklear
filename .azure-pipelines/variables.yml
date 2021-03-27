@@ -1,4 +1,4 @@
-- name: name
+- name: project
   value: nuklear
 - name: vmImage
   value: ubuntu-20.04

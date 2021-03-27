@@ -2,7 +2,7 @@
 variables:
   - template: .azure-pipelines/variables.yml
 
-name: ${{variables.name}}-pipeline
+name: ${{variables.project}}-pipeline
 
 trigger:
   - main
@@ -36,7 +36,7 @@ stages:
         displayName: 'Info'
       - template: ado-pipeline-templates/run-aws-nuke.yml
         parameters:
-          name: ${{ variables.name }}
+          name: ${{ variables.project }}
           targetServiceConnection: ${{ variables.targetServiceConnection }}
           logArchiveServiceConnection: ${{ variables.logArchiveServiceConnection }}
           awsRegion: ${{ variables.awsRegion }}
