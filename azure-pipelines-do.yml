@@ -4,16 +4,16 @@ variables:
 
 name: ${{variables.project}}-pipeline
 
-# trigger:
-#   - main
+trigger:
+  - main
 
-schedules:
-  - cron: "30 8 * * 5"
-    displayName: Weekly run on Friday
-    branches:
-      include:
-        - main
-    always: true
+# schedules:
+#   - cron: "30 8 * * 5"
+#     displayName: Weekly run on Friday
+#     branches:
+#       include:
+#         - main
+#     always: true
 
 stages:
   - stage: run
