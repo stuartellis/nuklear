@@ -40,6 +40,6 @@ stages:
           targetServiceConnection: ${{ variables.targetServiceConnection }}
           logArchiveServiceConnection: ${{ variables.logArchiveServiceConnection }}
           awsRegion: ${{ variables.awsRegion }}
-          awsNukeConfig: ${{ variables.awsConfig }}
+          awsNukeConfig: ${{ variables.awsNukeConfig }}
           awsNukeMode: ${{ variables.awsNukeMode }}
           logsS3Bucket: ${{ variables.logsS3Bucket }}
