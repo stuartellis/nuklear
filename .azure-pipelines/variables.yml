@@ -1,6 +1,14 @@
-variables:
-  name: nuklear
-  vmImage: 'ubuntu-20.04'
-  awsNukeConfig: labs
-  awsNukeMode: dryrun
-  logsS3Bucket: stuartellis-origin-ops-logs-eu-west-1
+- name: name
+  value: nuklear
+- name: vmImage
+  value: ubuntu-20.04
+- name: awsNukeConfig
+  value: labs
+- name: awsNukeMode
+  value: dryrun
+- name: logArchiveServiceConnection
+  value: sje-aws-origin
+- name: targetServiceConnection
+  value: sje-aws-labs
+- name: logsS3Bucket
+  value: stuartellis-origin-ops-logs-eu-west-1

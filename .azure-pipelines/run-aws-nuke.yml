@@ -1,0 +1,43 @@
+parameters:
+  - name: displayName
+    type: string
+  - name: targetServiceConnection
+    type: string
+  - name: logArchiveServiceConnection
+    type: string
+  - name: logsS3Bucket
+    type: string
+  - name: awsRegion
+    type: string
+  - name: awsNukeMode
+    type: string
+  - name: awsNukeConfig
+    type: string
+stages:
+  - bash: |
+      CURRENT_TIMESTAMP=$(./do.sh timestamp)
+      echo "Timestamp: $CURRENT_TIMESTAMP"
+      echo "##vso[task.setvariable variable=timestamp;]$CURRENT_TIMESTAMP"
+    displayName: 'Set Timestamp'
+  - task: AWSShellScript@1
+    displayName: 'Run'
+    inputs:
+      awsCredentials: ${{ parameters.targetServiceConnection }}
+      regionName: ${{ parameters.awsRegion }}
+      scriptType: 'inline'
+      inlineScript: ./do.sh headless:${{ parameters.awsNukeMode }} ${{ parameters.awsNukeConfig }} $(timestamp)
+  - bash: |
+      ./do.sh summarize $(timestamp)
+    displayName: 'Generate Summaries'
+  - publish: log
+    artifact: ${{ parameters.name }}-${{ parameters.awsNukeConfig }}-$(system.JobId)-logs 
+    condition: always()
+  - task: S3Upload@1
+    condition: always()
+    inputs:
+      awsCredentials: ${{ parameters.logArchiveServiceConnection }}
+      regionName: ${{ parameters.awsRegion }}
+      bucketName: ${{ parameters.logsS3Bucket }}
+      sourceFolder: 'log'
+      globExpressions: '**'
+      targetFolder: ${{ parameters.name }}/${{ parameters.awsNukeConfig }}/$(timestamp)
