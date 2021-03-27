@@ -4,6 +4,9 @@ variables:
 
 name: ${{variables.name}}-pipeline
 
+trigger:
+  - master
+
 schedules:
   - cron: "30 8 * * 5"
     displayName: Weekly run on Friday
