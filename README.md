@@ -1,10 +1,10 @@
 # nuklear
 
-Runner for [aws-nuke](https://github.com/rebuy-de/aws-nuke).
+Automated AWS account clean-up with [aws-nuke](https://github.com/rebuy-de/aws-nuke) and [Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/).
 
 ## WARNING: VPC Resources
 
-By default, it will destroy default VPC network resources:
+By default, aws-nuke will destroy default VPC network resources:
 
 https://github.com/rebuy-de/aws-nuke/issues/555
 
