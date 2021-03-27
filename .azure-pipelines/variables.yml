@@ -1,14 +1,15 @@
-- name: project
-  value: nuklear
-- name: vmImage
-  value: ubuntu-20.04
-- name: awsNukeConfig
-  value: noop
-- name: awsNukeMode
-  value: dryrun
-- name: logArchiveServiceConnection
-  value: sje-aws-origin
-- name: targetServiceConnection
-  value: sje-aws-labs
-- name: logsS3Bucket
-  value: stuartellis-origin-ops-logs-eu-west-1
+variables:
+  - name: project
+    value: nuklear
+  - name: vmImage
+    value: ubuntu-20.04
+  - name: awsNukeConfig
+    value: noop
+  - name: awsNukeMode
+    value: dryrun
+  - name: logArchiveServiceConnection
+    value: sje-aws-origin
+  - name: targetServiceConnection
+    value: sje-aws-labs
+  - name: logsS3Bucket
+    value: stuartellis-origin-ops-logs-eu-west-1
