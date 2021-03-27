@@ -14,7 +14,7 @@ parameters:
   - name: awsNukeConfig
     type: string
 
-stages:
+steps:
   - bash: |
       CURRENT_TIMESTAMP=$(./do.sh timestamp)
       echo "Timestamp: $CURRENT_TIMESTAMP"
