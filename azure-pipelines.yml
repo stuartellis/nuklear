@@ -8,8 +8,8 @@ trigger:
   - main
 
 schedules:
-  - cron: "30 8 * * 5"
-    displayName: Weekly run on Friday
+  - cron: "30 8 * * 0"
+    displayName: Weekly run on Sunday
     branches:
       include:
         - main

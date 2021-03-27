@@ -6,7 +6,7 @@ variables:
   - name: awsNukeConfig
     value: labs-focused
   - name: awsNukeMode
-    value: dryrun
+    value: nuke
   - name: awsRegion
     value: eu-west-1
   - name: logArchiveServiceConnection
