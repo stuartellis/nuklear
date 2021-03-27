@@ -1,0 +1,10 @@
+---
+regions:
+  - global # This is for all global resource types e.g. IAM
+  - eu-west-1
+
+account-blocklist:
+  - 333594256635 #prod
+
+accounts:
+  000000000000: {}

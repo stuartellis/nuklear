@@ -5,7 +5,7 @@ variables:
 name: ${{variables.name}}-pipeline
 
 trigger:
-  - master
+  - main
 
 schedules:
   - cron: "30 8 * * 5"
