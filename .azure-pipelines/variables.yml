@@ -4,7 +4,7 @@ variables:
   - name: vmImage
     value: ubuntu-20.04
   - name: awsNukeConfig
-    value: noop
+    value: labs-focused
   - name: awsNukeMode
     value: dryrun
   - name: awsRegion
