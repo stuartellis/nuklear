@@ -7,6 +7,8 @@ variables:
     value: noop
   - name: awsNukeMode
     value: dryrun
+  - name: awsRegion
+    value: eu-west-1
   - name: logArchiveServiceConnection
     value: sje-aws-origin
   - name: targetServiceConnection
