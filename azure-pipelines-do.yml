@@ -43,6 +43,9 @@ stages:
           regionName: 'eu-west-1'
           scriptType: 'inline'
           inlineScript: ./do.sh headless:${{variables.awsNukeMode}} ${{variables.awsNukeConfig}} $(timestamp)
+      - bash: |
+          ./do.sh summarize
+        displayName: 'Create Log Summaries'
       - publish: log
         artifact: ${{variables.name}}-${{variables.awsNukeConfig}}-$(system.JobId)-logs 
         condition: always()
