@@ -4,8 +4,8 @@ variables:
 
 name: ${{variables.project}}-pipeline
 
-trigger:
-  - main
+# trigger:
+#   - main
 
 schedules:
   - cron: "30 8 * * 5"
