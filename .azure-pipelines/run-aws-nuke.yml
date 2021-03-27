@@ -1,5 +1,5 @@
 parameters:
-  - name: displayName
+  - name: name
     type: string
   - name: targetServiceConnection
     type: string
@@ -13,6 +13,7 @@ parameters:
     type: string
   - name: awsNukeConfig
     type: string
+
 stages:
   - bash: |
       CURRENT_TIMESTAMP=$(./do.sh timestamp)

@@ -2,18 +2,18 @@
 variables:
   - template: .azure-pipelines/variables.yml
 
-name: ${{variables.project}}-pipeline
+name: ${{variables.name}}-pipeline
 
 trigger:
   - main
 
-# schedules:
-#   - cron: "30 8 * * 5"
-#     displayName: Weekly run on Friday
-#     branches:
-#       include:
-#         - main
-#     always: true
+schedules:
+  - cron: "30 8 * * 5"
+    displayName: Weekly run on Friday
+    branches:
+      include:
+        - main
+    always: true
 
 stages:
   - stage: run
@@ -26,7 +26,7 @@ stages:
       steps:
       - task: Cache@2
         inputs:
-          key: aws-nuke | "$(Agent.OS)" | do.sh
+          key: "${{variables.name}}" | "$(Agent.OS)" | do.sh
           path: bin
       - bash: |
           ./do.sh setup
@@ -36,7 +36,7 @@ stages:
         displayName: 'Info'
       - template: .azure-pipelines/run-aws-nuke.yml
         parameters:
-          name: ${{ variables.project }}
+          name: ${{ variables.name }}
           targetServiceConnection: ${{ variables.targetServiceConnection }}
           logArchiveServiceConnection: ${{ variables.logArchiveServiceConnection }}
           awsRegion: ${{ variables.awsRegion }}
