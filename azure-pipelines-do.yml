@@ -34,7 +34,7 @@ stages:
       - bash: |
           ./do.sh info > log/aws-nuke-info.txt
         displayName: 'Info'
-      - template: ado-pipeline-templates/run-aws-nuke.yml
+      - template: .azure-pipelines/run-aws-nuke.yml
         parameters:
           name: ${{ variables.project }}
           targetServiceConnection: ${{ variables.targetServiceConnection }}
