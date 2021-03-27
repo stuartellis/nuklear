@@ -28,7 +28,7 @@ steps:
       scriptType: 'inline'
       inlineScript: ./do.sh headless:${{ parameters.awsNukeMode }} ${{ parameters.awsNukeConfig }} $(timestamp)
   - bash: |
-      ./do.sh summarize $(timestamp)
+      TIMESTAMP=$(timestamp) ./do.sh summarize
     displayName: 'Generate Summaries'
   - publish: log
     artifact: ${{ parameters.name }}-${{ parameters.awsNukeConfig }}-$(system.JobId)-logs 
