@@ -26,7 +26,7 @@ stages:
       steps:
       - task: Cache@2
         inputs:
-          key: "${{variables.name}}" | "$(Agent.OS)" | do.sh
+          key: aws-nuke | "$(Agent.OS)" | do.sh
           path: bin
       - bash: |
           ./do.sh setup
