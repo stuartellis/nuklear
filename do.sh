@@ -97,12 +97,12 @@ case $1 in
   ;;
   summarize)
     set_timestamp
-    grep 'remove' log/aws-nuke-"$TIMESTAMP"-full.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets.log
-    grep '\- S3Object \-\|\- DynamoDBTableItem \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-dataobj.log
-    grep -v '\- S3Object \-\|\- DynamoDBTableItem \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log
-    # grep '\- SSMParameter \-\|\- SecretsManagerSecret \-\|\- EC2KeyPair \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-secrets.log
-    grep -v '\- SSMParameter \-\|\- SecretsManagerSecret \-\|\- EC2KeyPair \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-notsecrets.log
-    grep '\- CloudFormationStack \-\|\- EC2InstanceECSCluster \-\|\- ECSCluster \-\|\- DynamoDBTable \-\|\- S3Bucket \-\|\- SNSTopic \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-keytargets.log
+    grep 'remove' log/aws-nuke-"$TIMESTAMP"-full.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets.log || :
+    grep '\- S3Object \-\|\- DynamoDBTableItem \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-dataobj.log || :
+    grep -v '\- S3Object \-\|\- DynamoDBTableItem \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log || :
+    grep '\- SSMParameter \-\|\- SecretsManagerSecret \-\|\- EC2KeyPair \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-secrets.log || :
+    grep -v '\- SSMParameter \-\|\- SecretsManagerSecret \-\|\- EC2KeyPair \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-notsecrets.log || :
+    grep '\- CloudFormationStack \-\|\- EC2InstanceECSCluster \-\|\- ECSCluster \-\|\- DynamoDBTable \-\|\- S3Bucket \-\|\- SNSTopic \-' log/aws-nuke-"$TIMESTAMP"-deletiontargets-nodataobj.log > log/aws-nuke-"$TIMESTAMP"-deletiontargets-keytargets.log || :
   ;;
   timestamp)
     set_timestamp
