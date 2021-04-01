@@ -35,7 +35,7 @@ function require_config () {
 
 function set_timestamp () {
   if [ ! "${TIMESTAMP:-}" ]; then
-    TIMESTAMP=$(date +%Y-%m-%dT%H:%M%z) 
+    TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
     export TIMESTAMP
   fi
 }
