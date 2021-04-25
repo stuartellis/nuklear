@@ -20,10 +20,10 @@ function specify_version () {
   fi
 
   # On GitHub, the version numbers in URL and filename are NOT consistent
-  export AWS_NUKE_VERSION=2.15.0.rc.4
+  export AWS_NUKE_VERSION=2.15.0
   export ARCH=amd64
   export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$OS-$ARCH
-  export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0-rc.4/$AWS_NUKE_FILE.tar.gz
+  export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0/$AWS_NUKE_FILE.tar.gz
 }
 
 function require_config () {
