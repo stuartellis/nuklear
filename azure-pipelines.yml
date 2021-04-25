@@ -8,7 +8,7 @@ trigger:
   - main
 
 schedules:
-  - cron: "30 8 * * 0"
+  - cron: "0 10 * * 0"
     displayName: Weekly run on Sunday
     branches:
       include:
