@@ -63,3 +63,6 @@ presets:
         - "OrganizationAccountAccessRole -> AdministratorAccess"
         - property: "tag:Permanent"
           value: "True"
+      S3Bucket:
+        - property: "tag:sje:purpose"
+            value: "archive"
