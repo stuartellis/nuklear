@@ -4,6 +4,8 @@ set -euo pipefail
 
 ### Configuration
 
+AWS_NUKE_VERSION=$(cat aws-nuke-version)
+export AWS_NUKE_VERSION
 export AWS_NUKE_EXE=./bin/aws-nuke
 export AWS_NUKE_WAIT_SECONDS=3 # aws-nuke minimum is 3 seconds
 export AWS_NUKE_MAX_RETRIES=10
@@ -19,11 +21,9 @@ function specify_version () {
     export OS=linux
   fi
 
-  # On GitHub, the version numbers in URL and filename are NOT consistent
-  export AWS_NUKE_VERSION=2.15.0
   export ARCH=amd64
   export AWS_NUKE_FILE=aws-nuke-v$AWS_NUKE_VERSION-$OS-$ARCH
-  export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v2.15.0/$AWS_NUKE_FILE.tar.gz
+  export AWS_NUKE_URL=https://github.com/rebuy-de/aws-nuke/releases/download/v$AWS_NUKE_VERSION/$AWS_NUKE_FILE.tar.gz
 }
 
 function require_config () {
