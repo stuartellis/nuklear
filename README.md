@@ -4,13 +4,9 @@ Automated AWS account clean-up with [aws-nuke](https://github.com/rebuy-de/aws-n
 
 ## IAM Resources
 
-These resource types do not support tags:
+aws-nuke does not support filtering IAM resources types by their tags.
 
-- IAMGroup
-- IAMPolicy
-- IAMUser
-
-You can use *glob* to specify multiple resources that following a naming pattern:
+Use *glob* to specify multiple resources that following a naming pattern:
 
 ```
 IAMGroup:
