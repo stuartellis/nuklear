@@ -1,0 +1,98 @@
+---
+regions:
+  - global # This is for all global resource types e.g. IAM
+  - af-south-1
+  - ap-east-1
+  - ap-south-1
+  - ap-southeast-1
+  - ap-southeast-2
+  - ap-northeast-1
+  - ap-northeast-2
+  - ca-central-1
+  - eu-north-1
+  - eu-central-1
+  - eu-south-1
+  - eu-west-1
+  - eu-west-2
+  - eu-west-3
+  - me-south-1
+  - sa-east-1
+  - us-east-1
+  - us-east-2
+  - us-west-1
+  - us-west-2
+
+account-blocklist:
+  - 119559809358 # origin
+
+resource-types:
+  excludes:
+    - EC2VPC
+    - EC2Subnet
+    - EC2InternetGatewayAttachment
+    - EC2NetworkACL
+    - EC2RouteTable
+    - EC2DHCPOption
+    - EC2InternetGateway
+
+accounts:
+  333594256635: # labs
+    presets:
+      - "common"
+
+presets:
+  common:
+    filters:
+
+      CloudFormationStack:
+        - property: Name
+          type: glob
+          value: "stuartellis-*"
+        - property: Name
+          type: glob
+          value: "stuart-ellis-*"
+
+      IAMGroup:
+        - type: glob
+          value: "Automated*"
+        - type: glob
+          value: "stuartellis-ops-*"
+      IAMGroupPolicyAttachment:
+        - type: glob
+          value: "Automated* -> *"
+
+      IAMRole:
+        - property: Name
+          type: glob
+          value: "stuartellis-*"
+        - property: Name
+          type: glob
+          value: "stuart-ellis-*"
+      IAMRolePolicyAttachment:
+        - type: glob
+          value: "stuartellis-* -> *"
+        - type: glob
+          value: "stuart-ellis-* -> *"
+
+      IAMUserAccessKey:
+        - type: glob
+          value: "sel -> *"
+        - type: glob
+          value: "sje* -> *"
+      IAMUserPolicyAttachment:
+        - type: glob
+          value: "sel -> *"
+        - type: glob
+          value: "sje -> *"
+      IAMUser:
+        - sel
+        - sje-ado-labs-tfc
+      IAMUserGroupAttachment:
+        - type: glob
+          value: "sje-*"
+      IAMLoginProfile:
+        - sel
+        - sje-ado-labs-tfc
+      IAMVirtualMFADevice:
+        - "arn:aws:iam::333594256635:mfa/root-account-mfa-device"
+        - "arn:aws:iam::333594256635:mfa/sel"

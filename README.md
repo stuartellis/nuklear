@@ -30,8 +30,19 @@ To avoid this, exclude VPC resources from destruction:
 - EC2DHCPOption
 - EC2InternetGateway
 
-## WARNING: Handling S3 Buckets
+## S3
 
-By default, aws-nuke checks and logs every individual object in S3 buckets.
+aws-nuke treats data resources as separate from the containing resource. For S3, this means that you must have separate rules for S3 buckets and the objects in the buckets.
 
-To avoid this, nuke only the S3Bucket resources. This will clean up all the objects within the buckets, without logging all of the individual objects.
+The S3 types are:
+
+- S3Bucket
+- S3MultipartUpload
+- S3Object
+
+For normal use, exclude S3Object. [This issue](https://github.com/rebuy-de/aws-nuke/issues/613) explains that aws-nuke will run slowly and use a lerge amount of resources if required to process thousands of objects in S3 buckets.
+
+Similarly, there are separate types for DynamoDB records and tables:
+
+- DynamoDBTable
+- DynamoDBTableItem

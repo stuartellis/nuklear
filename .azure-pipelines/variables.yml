@@ -4,7 +4,7 @@ variables:
   - name: vmImage
     value: ubuntu-20.04
   - name: awsNukeConfig
-    value: labs-focused
+    value: labs-standard
   - name: awsNukeMode
     value: nuke
   - name: awsRegion
