@@ -94,5 +94,7 @@ presets:
         - sel
         - sje-ado-labs-tfc
       IAMVirtualMFADevice:
-        - "arn:aws:iam::333594256635:mfa/root-account-mfa-device"
-        - "arn:aws:iam::333594256635:mfa/sel"
+        - type: glob
+          value: "arn:aws:iam::*:mfa/root-account-mfa-device"
+        - type: glob
+          value: "arn:aws:iam::*:mfa/sel"
