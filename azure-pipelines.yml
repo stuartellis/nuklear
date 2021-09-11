@@ -5,7 +5,14 @@ variables:
 name: ${{variables.name}}-pipeline
 
 trigger:
-  - main
+  branches:
+    include:
+    - main
+  paths:
+    exclude:
+    - .azure-pipelines
+    - azure-pipelines.yml
+    - README.md
 
 schedules:
   - cron: "0 20 * * 0"
@@ -18,6 +25,7 @@ schedules:
 stages:
   - stage: run
     displayName: Run
+    condition: eq($[eq(variables['Build.SourceBranchName'], 'main'))
     jobs:
     - job: run
       displayName: Setup and Run
