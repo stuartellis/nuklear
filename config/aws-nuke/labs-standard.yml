@@ -34,9 +34,10 @@ resource-types:
     - EC2RouteTable
     - EC2DHCPOption
     - EC2InternetGateway
+    - SecretsManagerSecret
 
 accounts:
-  333594256635: # labs
+  333594256635:
     presets:
       - "common"
 
