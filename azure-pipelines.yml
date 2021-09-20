@@ -28,6 +28,8 @@ stages:
     jobs:
       - job: run
         displayName: Setup and Run
+        pool:
+          vmImage: ${{variables.vmImage}}
         steps:
           - template: .azure-pipelines/run-aws-nuke.yml
             parameters:
