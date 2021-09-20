@@ -1,4 +1,3 @@
-
 variables:
   - template: .azure-pipelines/variables.yml
 
@@ -7,12 +6,12 @@ name: ${{variables.name}}-pipeline
 trigger:
   branches:
     include:
-    - main
+      - main
   paths:
     exclude:
-    - .azure-pipelines
-    - azure-pipelines.yml
-    - README.md
+      - .azure-pipelines
+      - azure-pipelines.yml
+      - README.md
 
 schedules:
   - cron: "0 20 * * 0"
@@ -27,17 +26,15 @@ stages:
     displayName: Run
     condition: eq(variables['Build.SourceBranchName'], 'main')
     jobs:
-    - job: run
-      displayName: Setup and Run
-      pool:
-        vmImage: ${{variables.vmImage}}
-      steps:
-      - template: .azure-pipelines/run-aws-nuke.yml
-        parameters:
-          name: ${{ variables.name }}
-          targetServiceConnection: ${{ variables.targetServiceConnection }}
-          logArchiveServiceConnection: ${{ variables.logArchiveServiceConnection }}
-          awsRegion: ${{ variables.awsRegion }}
-          awsNukeConfig: ${{ variables.awsNukeConfig }}
-          awsNukeMode: ${{ variables.awsNukeMode }}
-          logsS3Bucket: ${{ variables.logsS3Bucket }}
+      - job: run
+        displayName: Setup and Run
+        steps:
+          - template: .azure-pipelines/run-aws-nuke.yml
+            parameters:
+              name: ${{ variables.name }}
+              targetServiceConnection: ${{ variables.targetServiceConnection }}
+              logArchiveServiceConnection: ${{ variables.logArchiveServiceConnection }}
+              awsRegion: ${{ variables.awsRegion }}
+              awsNukeConfig: ${{ variables.awsNukeConfig }}
+              awsNukeMode: ${{ variables.awsNukeMode }}
+              logsS3Bucket: ${{ variables.logsS3Bucket }}
